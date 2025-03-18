@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import jakarta.persistence.*;
 import java.util.Collection;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "clients", uniqueConstraints = {
@@ -35,6 +36,9 @@ public class Client implements UserDetails {
 
     @Column(nullable = false)
     private String role; // "ROLE_USER" o "ROLE_ADMIN"
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PayMethod> payMethods = new ArrayList<>();
 
     // Constructores
     public Client() {}
@@ -140,5 +144,13 @@ public class Client implements UserDetails {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<PayMethod> getPayMethods() {
+        return payMethods;
+    }
+
+    public void setPayMethods(List<PayMethod> payMethods) {
+        this.payMethods = payMethods;
     }
 }

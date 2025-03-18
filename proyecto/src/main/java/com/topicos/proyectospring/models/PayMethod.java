@@ -17,13 +17,18 @@ public class PayMethod {
     private String year;
     private String month;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false) // Llave foránea a la tabla clients
+    private Client client;
+
     public PayMethod() {}
 
-    public PayMethod(String ownersName, String cardNumber, String cvv, String month, String year) {
+    public PayMethod(String ownersName, String cardNumber, String cvv, String month, String year, Client client) {
         this.ownersName = ownersName;
         this.cardNumber = cardNumber;
         this.cvv = cvv;
         this.expirationDate = month + "/" + year;
+        this.client = client;
     }
 
     public Long getId() { return id; }
@@ -45,4 +50,7 @@ public class PayMethod {
 
     public String getMonth() { return month; }
     public void setMonth(String month) { this.month = month; }
+
+    public Client getClient() { return client; }
+    public void setClient(Client client) { this.client = client; }
 }
