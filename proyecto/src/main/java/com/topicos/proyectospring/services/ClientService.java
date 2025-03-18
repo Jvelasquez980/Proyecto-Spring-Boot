@@ -47,9 +47,18 @@ public class ClientService {
     public PayMethod addPayMethod(Long clientId, PayMethod payMethod) {
         Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+    
+        // Agregar el método a la lista del cliente
+        client.getPayMethods().add(payMethod);
         payMethod.setClient(client);
-        return payMethodRepository.save(payMethod);
+    
+        // Guardar primero el método de pago y luego actualizar el cliente
+        payMethodRepository.save(payMethod);
+        clientRepository.save(client);
+    
+        return payMethod;
     }
+    
 
     // Eliminar un método de pago
     public void deletePayMethod(Long payMethodId) {

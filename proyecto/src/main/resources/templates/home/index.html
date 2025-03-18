@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inicio</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h2>Bienvenido, <span th:text="${session.client.name}"></span>!</h2>
+
+    <a href="/pay-methods">Mis Métodos de Pago</a>
+    <br>
+    <a href="/logout">Cerrar sesión</a>
+</body>
+</html>
