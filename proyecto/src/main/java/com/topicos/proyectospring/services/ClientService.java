@@ -24,10 +24,14 @@ public class ClientService {
 
     // Registrar usuario
     public Client registerUser(String username, String email, String name, String lastName, String password, Long phone, String role) {
+        if (clientRepository.existsByUsername(username) || clientRepository.existsByEmail(email)) {
+            throw new IllegalArgumentException("El usuario o correo ya están registrados");
+        }
         String encodedPassword = passwordEncoder.encode(password);
         Client client = new Client(username, email, name, lastName, encodedPassword, phone, role);
         return clientRepository.save(client);
     }
+    
 
     // Obtener métodos de pago de un cliente
     public List<PayMethod> getPayMethods(Long clientId) {
