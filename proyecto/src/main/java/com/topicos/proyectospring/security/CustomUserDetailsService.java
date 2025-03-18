@@ -1,6 +1,5 @@
 package com.topicos.proyectospring.security;
 
-import com.topicos.proyectospring.models.Client;
 import com.topicos.proyectospring.repositories.ClientRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

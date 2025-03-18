@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Método de Pago</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Agregar Método de Pago</h1>
+    
+    <form action="/pay-methods" method="post">
+        <label for="ownersName">Nombre del Titular:</label>
+        <input type="text" id="ownersName" name="ownersName" required>
+
+        <label for="cardNumber">Número de Tarjeta:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required>
+
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" required>
+
+        <label for="month">Mes de Expiración:</label>
+        <input type="text" id="month" name="month" required>
+
+        <label for="year">Año de Expiración:</label>
+        <input type="text" id="year" name="year" required>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="/pay-methods">Volver a métodos de pago</a>
+</body>
+</html>

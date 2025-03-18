@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos de Pago</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Métodos de Pago</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del Titular</th>
+                <th>Número de Tarjeta</th>
+                <th>Fecha de Expiración</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterar sobre los métodos de pago -->
+            <tr th:each="payMethod : ${payMethods}">
+                <td th:text="${payMethod.ownersName}"></td>
+                <td th:text="${payMethod.cardNumber}"></td>
+                <td th:text="${payMethod.expirationDate}"></td>
+                <td>
+                    <a th:href="@{/pay-methods/delete/{id}(id=${payMethod.id})}" onclick="return confirm('¿Seguro que quieres eliminar este método de pago?')">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/pay-methods/new">Agregar nuevo método de pago</a>
+</body>
+</html>

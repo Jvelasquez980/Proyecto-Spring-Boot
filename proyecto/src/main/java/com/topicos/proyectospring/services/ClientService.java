@@ -31,6 +31,10 @@ public class ClientService {
         Client client = new Client(username, email, name, lastName, encodedPassword, phone, role);
         return clientRepository.save(client);
     }
+    public Client findByUsername(String username) {
+        return clientRepository.findByUsername(username)
+            .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+    }
     
 
     // Obtener métodos de pago de un cliente
