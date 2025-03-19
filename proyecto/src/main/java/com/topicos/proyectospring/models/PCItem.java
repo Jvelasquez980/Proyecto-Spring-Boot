@@ -1,5 +1,7 @@
 package com.topicos.proyectospring.models;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.topicos.proyectospring.converters.JsonNodeConverter;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,63 +14,42 @@ public class PCItem {
     private String name;
     private String category;
     private String brand;
-    private float price;
+    private Double price;
     private int stock;
 
+    @Convert(converter = JsonNodeConverter.class) // 🟢 Usa el convertidor de JsonNode
+    @Column(columnDefinition = "json")
+    private JsonNode performance;
+
     public PCItem() {}
-    public PCItem(String name, String category, String brand, float price, int stock) {
+
+    public PCItem(String name, String category, String brand, Double price, int stock, JsonNode performance) {
         this.name = name;
         this.category = category;
         this.brand = brand;
         this.price = price;
         this.stock = stock;
+        this.performance = performance;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getName() {
-        return name;
-    }
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getBrand() { return brand; }
+    public void setBrand(String brand) { this.brand = brand; }
 
-    public String getCategory() {
-        return category;
-    }
+    public Double getPrice() { return price; }
+    public void setPrice(Double price) { this.price = price; }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    public int getStock() { return stock; }
+    public void setStock(int stock) { this.stock = stock; }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
+    public JsonNode getPerformance() { return performance; }
+    public void setPerformance(JsonNode performance) { this.performance = performance; }
 }

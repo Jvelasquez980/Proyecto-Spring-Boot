@@ -2,10 +2,10 @@ package com.topicos.proyectospring.services;
 
 
 import com.topicos.proyectospring.models.Client;
-import com.topicos.proyectospring.models.Item;
+import com.topicos.proyectospring.models.PCItem;
 import com.topicos.proyectospring.models.Wishlist;
 import com.topicos.proyectospring.repositories.ClientRepository;
-import com.topicos.proyectospring.repositories.ItemRepository;
+import com.topicos.proyectospring.repositories.PCItemRepository;
 import com.topicos.proyectospring.repositories.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class WishlistService {
     private ClientRepository clientRepository;
 
     @Autowired
-    private ItemRepository itemRepository;
+    private PCItemRepository pcItemRepository;
 
     public Wishlist getOrCreateWishlist(Client client) {
         return wishlistRepository.findByClient(client).orElseGet(() -> {
@@ -32,7 +32,7 @@ public class WishlistService {
 
     public void addItemToWishlist(Long clientId, Long itemId) {
         Client client = clientRepository.findById(clientId).orElseThrow();
-        Item item = itemRepository.findById(itemId).orElseThrow();
+        PCItem item = pcItemRepository.findById(itemId).orElseThrow();
         Wishlist wishlist = getOrCreateWishlist(client);
         wishlist.getItems().add(item);
         wishlistRepository.save(wishlist);

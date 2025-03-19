@@ -22,8 +22,6 @@ public class WishlistController {
     @Autowired
     private WishlistService wishlistService;
 
-    @Autowired
-    private ClientRepository clientRepository;
 
     @GetMapping
     public String viewWishlist(HttpSession session, Model model) {

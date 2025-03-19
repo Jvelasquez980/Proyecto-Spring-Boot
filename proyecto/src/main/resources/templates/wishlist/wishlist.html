@@ -33,8 +33,8 @@
                 </thead>
                 <tbody>
                 <tr th:each="item : ${wishlist.items}">
-                    <td th:text="${item.nombre}"></td>
-                    <td th:text="${item.precio}"></td>
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.price}"></td>
                     <td>
                         <form th:action="@{/wishlist/remove/{id}(id=${item.id})}" method="post" class="d-inline">
                             <button type="submit" class="btn btn-danger btn-sm">

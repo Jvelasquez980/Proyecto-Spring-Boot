@@ -3,7 +3,6 @@ package com.topicos.proyectospring.models;
 import jakarta.persistence.*;
 import java.util.List;
 
-
 @Entity
 public class Wishlist {
     @Id
@@ -15,18 +14,37 @@ public class Wishlist {
     private Client client;
 
     @ManyToMany
-    @JoinTable(
-            name = "wishlist_items",
-            joinColumns = @JoinColumn(name = "wishlist_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_id")
-    )
-    private List<Item> items;
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    @JoinTable(name = "wishlist_pc_item", joinColumns = @JoinColumn(name = "wishlist_id"), inverseJoinColumns = @JoinColumn(name = "pc_item_id"))
+    private List<PCItem> items;
+    private int quantity;
 
-    public Client getClient() { return client; }
-    public void setClient(Client client) { this.client = client; }
-
-    public List<Item> getItems() { return items; }
-    public void setItems(List<Item> items) { this.items = items; }
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public Client getClient() {
+        return client;
+    }
+    
+    public void setClient(Client client) {
+        this.client = client;
+    }
+    
+    public List<PCItem> getItems() {
+        return items;
+    }
+    
+    public void setItems(List<PCItem> items) {
+        this.items = items;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
