@@ -68,10 +68,11 @@
             <button type="submit" class="btn btn-warning">Añadir a Wishlist</button>
         </form>
         <form th:action="@{/items/delete/{id}(id=${item.id})}" method="post" style="display:inline;">
-            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro que quieres eliminar este item?');">
+            <button th:if="${session.client.role == 'ROLE_ADMIN'}" type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro que quieres eliminar este item?');">
                 Eliminar
             </button>
         </form>
+        <a th:href="@{/items/compare?item1={id}(id=${item.id})}" class="btn btn-primary">Comparar</a>
     </div>
 </div>
 

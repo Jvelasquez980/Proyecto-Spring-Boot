@@ -7,13 +7,9 @@ import com.topicos.proyectospring.services.PCItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.JsonNode;
 import java.util.Optional;
 
-
 import java.util.Map;
-
 
 @Controller
 @RequestMapping("/items")
@@ -60,11 +56,11 @@ public class PCItemController {
     @GetMapping("/{id}")
     public String viewItem(@PathVariable Long id, Model model) {
         Optional<PCItem> itemOptional = pcItemService.getItemById(id);
-    
+
         if (itemOptional.isPresent()) {
             PCItem item = itemOptional.get();
             model.addAttribute("item", item);
-    
+
             // 🔥 Convertir performance a un Map accesible para Thymeleaf
             if (item.getPerformance() != null) {
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -73,10 +69,28 @@ public class PCItemController {
             } else {
                 model.addAttribute("performance", null);
             }
-    
+
             return "/items/show";
         }
-    
+
         return "redirect:/items";
+    }
+
+    @GetMapping("/compare")
+    public String compareForm(Model model) {
+        model.addAttribute("items", pcItemService.getAllItems());
+        return "/items/compare-form";
+    }
+
+    @PostMapping("/compare")
+    public String compareItems(@RequestParam Long item1, @RequestParam Long item2, Model model) {
+        try {
+            PCItem bestItem = pcItemService.compareItems(item1, item2);
+            model.addAttribute("bestItem", bestItem);
+            return "/items/comparison-result";
+        } catch (RuntimeException e) {
+            model.addAttribute("error", e.getMessage());
+            return "/items/compare-form";
+        }
     }
 }
