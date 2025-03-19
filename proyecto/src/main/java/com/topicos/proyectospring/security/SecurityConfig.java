@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/register", "/login", "/css/**", "/js/**").permitAll()
-                .requestMatchers("/items/new").hasRole("ADMIN") // 🔥 Solo ADMIN puede acceder
+                .requestMatchers("/items/new").hasRole("ADMIN")
                 .anyRequest().authenticated())
             .formLogin(form -> form
                 .loginPage("/login")
@@ -26,10 +26,13 @@ public class SecurityConfig {
                 .permitAll())
             .logout(logout -> logout
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/logout-success")
                 .permitAll())
             .exceptionHandling(exception -> exception
-                .accessDeniedPage("/") // 🔥 Redirige a "/" si no tiene permisos
+                .accessDeniedPage("/"))
+            .sessionManagement(session -> session
+                .maximumSessions(1) // Solo permite una sesión activa por usuario
+                .expiredUrl("/login?expired") // Redirige si la sesión expira
             );
 
         return http.build();
