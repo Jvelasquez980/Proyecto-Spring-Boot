@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+    <title>Lista de Items</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div class="container my-4">
+    <h1 class="text-center">Lista de Items</h1>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a th:if="${session.client.role == 'ADMIN'}" href="/items/new" class="btn btn-success">Agregar Nuevo Item</a>
+    </div>
+
+    <div class="row">
+        <div th:each="item : ${items}" class="col-md-4">
+            <div class="card mb-4 shadow-sm item-box"> <!-- Aplicando la clase aquí -->
+                <img src="https://placehold.co/400x300" class="card-img-top" alt="Item Image">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${item.nombre}">Item Name</h5>
+                    <p class="card-text"><strong>Precio:</strong> $<span th:text="${item.precio}"></span></p>
+                    <div class="d-flex justify-content-between">
+                        <a th:href="@{/items/{id}(id=${item.id})}" class="btn btn-info">Más detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+
+</body>
+</html>
