@@ -57,7 +57,7 @@ public class PCItemService {
             return 0;
 
         if (category.equals("CPU")) {
-            score += performance.get("rankPopularity").asInt(0);
+            score -= performance.get("rankPopularity").asInt(0);
             score += performance.get("costEfficiency").asInt(0);
             score += performance.get("energyEfficiency").asInt(0);
             score += performance.get("threads").asInt(0);
@@ -65,7 +65,7 @@ public class PCItemService {
             score += performance.get("baseFrequency").asInt(0);
             score += performance.get("maxFrequency").asInt(0);
         } else if (category.equals("GPU")) {
-            score += performance.get("rankPerformance").asInt(0);
+            score -= performance.get("rankPerformance").asInt(0);
             score += performance.get("rankPopularity").asInt(0);
             score += performance.get("costEfficiency").asInt(0);
             score += performance.get("energyEfficiency").asInt(0);
