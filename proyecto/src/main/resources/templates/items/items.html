@@ -29,7 +29,7 @@
                 <img src="https://placehold.co/400x300" class="card-img-top" alt="Item Image">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${item.name}">Item Name</h5>
-                    <p class="card-text"><strong>Precio:</strong> $<span th:text="${item.stock}"></span></p>
+                    <p class="card-text"><strong>Precio:</strong> $<span th:text="${item.price}"></span></p>
                     <div class="d-flex justify-content-between">
                         <a th:href="@{/items/{id}(id=${item.id})}" class="btn btn-info">Más detalles</a>
                     </div>
