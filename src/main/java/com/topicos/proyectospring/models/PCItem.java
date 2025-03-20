@@ -19,9 +19,10 @@ public class PCItem {
     private Double price;
     private int stock;
 
-    @Convert(converter = JsonNodeConverter.class) // 🟢 Usa el convertidor de JsonNode
-    @Column(columnDefinition = "json")
+    @Convert(converter = JsonNodeConverter.class)
+    @Column(columnDefinition = "TEXT") // 🔥 Cambiar de "json" a "TEXT" para compatibilidad con PostgreSQL
     private JsonNode performance;
+    
 
     public PCItem() {}
 
