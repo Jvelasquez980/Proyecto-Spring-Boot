@@ -19,8 +19,8 @@ public class PCItem {
     private Double price;
     private int stock;
 
+    @Convert(converter = JsonNodeConverter.class) // 🟢 Usa el convertidor de JsonNode
     @Column(columnDefinition = "json")
-    @Type(JsonNode.class) // Indica a Hibernate que lo maneje como JSON
     private JsonNode performance;
 
     public PCItem() {}
