@@ -25,13 +25,13 @@ public class PCItemController {
     @GetMapping
     public String listItems(Model model) {
         model.addAttribute("items", pcItemService.getAllItems());
-        return "/items/items";
+        return "items/items";
     }
 
     @GetMapping("/new")
     public String newItemForm(Model model) {
         model.addAttribute("item", new PCItem());
-        return "/items/item-form";
+        return "items/item-form";
     }
 
     @PostMapping
@@ -70,7 +70,7 @@ public class PCItemController {
                 model.addAttribute("performance", null);
             }
 
-            return "/items/show";
+            return "items/show";
         }
 
         return "redirect:/items";
@@ -79,7 +79,7 @@ public class PCItemController {
     @GetMapping("/compare")
     public String compareForm(Model model) {
         model.addAttribute("items", pcItemService.getAllItems());
-        return "/items/compare-form";
+        return "items/compare-form";
     }
 
     @PostMapping("/compare")
@@ -87,10 +87,10 @@ public class PCItemController {
         try {
             PCItem bestItem = pcItemService.compareItems(item1, item2);
             model.addAttribute("bestItem", bestItem);
-            return "/items/comparison-result";
+            return "items/comparison-result";
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
-            return "/items/compare-form";
+            return "items/compare-form";
         }
     }
 }

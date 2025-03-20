@@ -27,7 +27,7 @@ public class WishlistController {
         Client client = (Client) session.getAttribute("client");
         Wishlist wishlist = wishlistService.getOrCreateWishlist(client);
         model.addAttribute("wishlist", wishlist);
-        return "/wishlist/wishlist";
+        return "wishlist/wishlist";
     }
 
     @PostMapping("/add/{itemId}")

@@ -35,7 +35,7 @@ public class AuthController {
             Client client = clientService.findByUsername(userDetails.getUsername());
             session.setAttribute("client", client);  // 🔥 Guardar usuario autenticado en sesión
         }
-        return "/home/index";
+        return "home/index";
     }
 
     @GetMapping("/register")
