@@ -20,7 +20,7 @@
     <h1 class="text-center">Lista de Items</h1>
 
     <div class="d-flex justify-content-end mb-3">
-        <a href="/items/new" class="btn btn-success">Agregar Nuevo Item</a>
+        <a th:if="${session.client.role == 'ROLE_ADMIN'}" href="/items/new" class="btn btn-success">Agregar Nuevo Item</a>
     </div>
 
     <div class="row">

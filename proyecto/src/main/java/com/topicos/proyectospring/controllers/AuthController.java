@@ -54,7 +54,7 @@ public class AuthController {
         return "redirect:/login";
     }
 
-    @GetMapping("/logout-success")
+    @GetMapping("/logout")
     public String logoutSuccess(HttpSession session) {
         session.invalidate();  // 🔥 Eliminar la sesión al cerrar sesión
         return "redirect:/login";

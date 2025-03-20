@@ -3,7 +3,6 @@ package com.topicos.proyectospring.controllers;
 
 import com.topicos.proyectospring.models.Client;
 import com.topicos.proyectospring.models.Wishlist;
-import com.topicos.proyectospring.repositories.ClientRepository;
 import com.topicos.proyectospring.services.WishlistService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

@@ -15,18 +15,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/register", "/login", "/css/**", "/js/**").permitAll()
-                        .anyRequest().authenticated())
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/login") // 🔥 Aquí se autentica
-                        .successForwardUrl("/login-success") // 🔥 Redirige a tu método loginSuccess
-                        .permitAll())
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
-                        .permitAll());
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/register", "/login", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/items/new").hasRole("ADMIN")
+                .anyRequest().authenticated())
+            .formLogin(form -> form
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .successForwardUrl("/login-success")
+                .permitAll())
+            .logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/logout-success")
+                .permitAll())
+            .exceptionHandling(exception -> exception
+                .accessDeniedPage("/"))
+            .sessionManagement(session -> session
+                .maximumSessions(1) // Solo permite una sesión activa por usuario
+                .expiredUrl("/login?expired") // Redirige si la sesión expira
+            );
 
         return http.build();
     }
