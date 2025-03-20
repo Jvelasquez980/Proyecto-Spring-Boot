@@ -2,7 +2,8 @@
 
 FROM maven:3.9-amazoncorretto-17 AS build
 WORKDIR /app
-COPY pom.xml src ./
+COPY pom.xml 
+COPY src ./
 RUN mvn clean package -DskipTests
 
 # Etapa final (runtime)
