@@ -42,36 +42,22 @@ public class PCItemService {
             throw new RuntimeException("Los ítems deben ser de la misma categoría");
         }
 
-        JsonNode performance1 = item1.getPerformance();
-        JsonNode performance2 = item2.getPerformance();
+        Double performance1 = item1.getPrice();
+        Double performance2 = item2.getPrice();
 
-        int score1 = evaluatePerformance(performance1, item1.getCategory());
-        int score2 = evaluatePerformance(performance2, item2.getCategory());
+        Double score1 = evaluatePerformance(performance1, item1.getCategory());
+        Double score2 = evaluatePerformance(performance2, item2.getCategory());
 
-        return score1 >= score2 ? item1 : item2;
+        return score1 <= score2 ? item1 : item2;
     }
 
-    private int evaluatePerformance(JsonNode performance, String category) {
-        int score = 0;
+    private Double evaluatePerformance(Double performance, String category) {
+        Double score = 0.0;
         if (performance == null)
-            return 0;
+            return 0.0;
 
         if (category.equals("CPU")) {
-            score -= performance.get("rankPopularity").asInt(0);
-            score += performance.get("costEfficiency").asInt(0);
-            score += performance.get("energyEfficiency").asInt(0);
-            score += performance.get("threads").asInt(0);
-            score += performance.get("cores").asInt(0);
-            score += performance.get("baseFrequency").asInt(0);
-            score += performance.get("maxFrequency").asInt(0);
-        } else if (category.equals("GPU")) {
-            score -= performance.get("rankPerformance").asInt(0);
-            score += performance.get("rankPopularity").asInt(0);
-            score += performance.get("costEfficiency").asInt(0);
-            score += performance.get("energyEfficiency").asInt(0);
-            score += performance.get("coreFrequency").asInt(0);
-            score += performance.get("boostFrequency").asInt(0);
-            score += performance.get("tdp").asInt(0);
+            score = performance;
         }
 
         return score;
