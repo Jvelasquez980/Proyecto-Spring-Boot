@@ -1,42 +1,42 @@
 <!-- pay-methods.html -->
 <!DOCTYPE html>
+
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
-    <title>Métodos de Pago</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" th:href="@{/css/styles.css}"/>
+<title th:text="#{'métodos.de.pago'}">Métodos de Pago</title>
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 <div class="container my-4">
-    <h1 class="text-center">Métodos de Pago</h1>
-    <table class="table table-dark table-striped">
-        <thead>
-        <tr>
-            <th>Nombre del Titular</th>
-            <th>Número de Tarjeta</th>
-            <th>Fecha de Expiración</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="payMethod : ${payMethods}">
-            <td th:text="${payMethod.ownersName}"></td>
-            <td th:text="${payMethod.cardNumber}"></td>
-            <td th:text="${payMethod.expirationDate}"></td>
-            <td>
-                <a th:href="@{/pay-methods/delete/{id}(id=${payMethod.id})}" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que quieres eliminar este método de pago?')">Eliminar</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div class="text-center">
-        <a th:href="@{/pay-methods/new}" class="btn btn-success">Agregar nuevo método de pago</a>
-    </div>
+<h1 class="text-center" th:text="#{'métodos.de.pago'}">Métodos de Pago</h1>
+<table class="table table-dark table-striped">
+<thead>
+<tr>
+<th th:text="#{'nombre.del.titular'}">Nombre del Titular</th>
+<th th:text="#{'número.de.tarjeta'}">Número de Tarjeta</th>
+<th th:text="#{'fecha.de.expiración'}">Fecha de Expiración</th>
+<th th:text="#{'acciones'}">Acciones</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="payMethod : ${payMethods}">
+<td th:text="${payMethod.ownersName}"></td>
+<td th:text="${payMethod.cardNumber}"></td>
+<td th:text="${payMethod.expirationDate}"></td>
+<td>
+<a class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que quieres eliminar este método de pago?')" th:href="@{/pay-methods/delete/{id}(id=${payMethod.id})}" th:text="#{'eliminar'}">Eliminar</a>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="text-center">
+<a class="btn btn-success" th:href="@{/pay-methods/new}" th:text="#{'agregar.nuevo.método.de.pago'}">Agregar nuevo método de pago</a>
+</div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>
-
 </body>
 </html>

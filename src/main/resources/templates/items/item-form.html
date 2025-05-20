@@ -1,17 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
-
-    <title>Crear Producto</title>
-
-    <script>
-        function updatePerformanceFields() {
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Bootstrap CSS -->
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" th:href="@{/css/styles.css}"/>
+<title th:text="#{'crear.producto'}">Crear Producto</title>
+<script th:text="#{'function.updateperformancefields.let.cat'}">function updatePerformanceFields() {
             let category = document.getElementById("category").value;
             document.getElementById("cpu-fields").style.display = category === "CPU" ? "block" : "none";
             document.getElementById("gpu-fields").style.display = category === "GPU" ? "block" : "none";
@@ -50,112 +47,89 @@
 
             // Envía el formulario después de modificar el valor
             event.target.submit();
-        }
-    </script>
+        }</script>
 </head>
 <body onload="updatePerformanceFields()">
-
 <div class="container my-4">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header bg-danger text-white text-center">
-                    <h5>Crear Nuevo Producto</h5>
-                </div>
-                <div class="card-body">
-                    <form th:action="@{/items}" th:object="${item}" method="post" onsubmit="preparePerformanceData(event)">
-                        <div class="mb-3">
-                            <label class="form-label">Nombre:</label>
-                            <input type="text" th:field="*{name}" class="form-control" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Categoría:</label>
-                            <select id="category" th:field="*{category}" class="form-control" onchange="updatePerformanceFields()" required>
-                                <option value="">Selecciona una categoría</option>
-                                <option value="CPU">CPU</option>
-                                <option value="GPU">GPU</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Marca:</label>
-                            <input type="text" th:field="*{brand}" class="form-control" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Precio:</label>
-                            <input type="number" step="0.01" th:field="*{price}" class="form-control" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Inventario:</label>
-                            <input type="number" step="1" th:field="*{stock}" class="form-control" required>
-                        </div>
-
-                        <!-- Campos para CPU -->
-                        <div id="cpu-fields" style="display:none;">
-                            <h5>Datos de CPU</h5>
-                            <label>Lugar por popularidad:</label>
-                            <input type="number" id="rankPopularity" class="form-control">
-
-                            <label>Evaluación coste-eficacia:</label>
-                            <input type="number" step="0.01" id="costEfficiency" class="form-control">
-
-                            <label>Eficiencia energética:</label>
-                            <input type="number" step="0.01" id="energyEfficiency" class="form-control">
-
-                            <label>Hilos:</label>
-                            <input type="number" id="threads" class="form-control">
-
-                            <label>Núcleos:</label>
-                            <input type="number" id="cores" class="form-control">
-
-                            <label>Frecuencia base:</label>
-                            <input type="number" step="0.01" id="baseFrequency" class="form-control">
-
-                            <label>Frecuencia máxima:</label>
-                            <input type="number" step="0.01" id="maxFrequency" class="form-control">
-                        </div>
-
-                        <!-- Campos para GPU -->
-                        <div id="gpu-fields" style="display:none;">
-                            <h5>Datos de GPU</h5>
-                            <label>Lugar en el ranking de rendimiento:</label>
-                            <input type="number" id="rankPerformance" class="form-control">
-
-                            <label>Lugar por popularidad:</label>
-                            <input type="number" id="rankPopularity" class="form-control">
-
-                            <label>Evaluación coste-eficacia:</label>
-                            <input type="number" step="0.01" id="costEfficiency" class="form-control">
-
-                            <label>Eficiencia energética:</label>
-                            <input type="number" step="0.01" id="energyEfficiency" class="form-control">
-
-                            <label>Frecuencia del núcleo:</label>
-                            <input type="number" step="0.01" id="coreFrequency" class="form-control">
-
-                            <label>Frecuencia del modo boost (N/A si no tiene):</label>
-                            <input type="number" step="0.01" id="boostFrequency" class="form-control">
-
-                            <label>Consumo de energía (TDP):</label>
-                            <input type="number" step="0.01" id="tdp" class="form-control">
-                        </div>
-
-                        <!-- Campo oculto para enviar el JSON -->
-                        <input type="hidden" id="performanceData" name="performanceData">
-
-                        <div class="mb-3 text-center">
-                            <button type="submit" class="btn btn-success">Guardar</button>
-                            <a th:href="@{/items}" class="btn btn-secondary">Cancelar</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="row justify-content-center">
+<div class="col-md-6">
+<div class="card">
+<div class="card-header bg-danger text-white text-center">
+<h5 th:text="#{'crear.nuevo.producto'}">Crear Nuevo Producto</h5>
 </div>
-
+<div class="card-body">
+<form method="post" onsubmit="preparePerformanceData(event)" th:action="@{/items}" th:object="${item}">
+<div class="mb-3">
+<label class="form-label" th:text="#{'nombre'}">Nombre:</label>
+<input class="form-control" required="" th:field="*{name}" type="text"/>
+</div>
+<div class="mb-3">
+<label class="form-label" th:text="#{'categoría'}">Categoría:</label>
+<select class="form-control" id="category" onchange="updatePerformanceFields()" required="" th:field="*{category}">
+<option th:text="#{'selecciona.una.categoría'}" value="">Selecciona una categoría</option>
+<option th:text="#{'cpu'}" value="CPU">CPU</option>
+<option th:text="#{'gpu'}" value="GPU">GPU</option>
+</select>
+</div>
+<div class="mb-3">
+<label class="form-label" th:text="#{'marca'}">Marca:</label>
+<input class="form-control" required="" th:field="*{brand}" type="text"/>
+</div>
+<div class="mb-3">
+<label class="form-label" th:text="#{'precio'}">Precio:</label>
+<input class="form-control" required="" step="0.01" th:field="*{price}" type="number"/>
+</div>
+<div class="mb-3">
+<label class="form-label" th:text="#{'inventario'}">Inventario:</label>
+<input class="form-control" required="" step="1" th:field="*{stock}" type="number"/>
+</div>
+<!-- Campos para CPU -->
+<div id="cpu-fields" style="display:none;">
+<h5 th:text="#{'datos.de.cpu'}">Datos de CPU</h5>
+<label th:text="#{'lugar.por.popularidad'}">Lugar por popularidad:</label>
+<input class="form-control" id="rankPopularity" type="number"/>
+<label th:text="#{'evaluación.coste.eficacia'}">Evaluación coste-eficacia:</label>
+<input class="form-control" id="costEfficiency" step="0.01" type="number"/>
+<label th:text="#{'eficiencia.energética'}">Eficiencia energética:</label>
+<input class="form-control" id="energyEfficiency" step="0.01" type="number"/>
+<label th:text="#{'hilos'}">Hilos:</label>
+<input class="form-control" id="threads" type="number"/>
+<label th:text="#{'núcleos'}">Núcleos:</label>
+<input class="form-control" id="cores" type="number"/>
+<label th:text="#{'frecuencia.base'}">Frecuencia base:</label>
+<input class="form-control" id="baseFrequency" step="0.01" type="number"/>
+<label th:text="#{'frecuencia.máxima'}">Frecuencia máxima:</label>
+<input class="form-control" id="maxFrequency" step="0.01" type="number"/>
+</div>
+<!-- Campos para GPU -->
+<div id="gpu-fields" style="display:none;">
+<h5 th:text="#{'datos.de.gpu'}">Datos de GPU</h5>
+<label th:text="#{'lugar.en.el.ranking.de.rendimiento'}">Lugar en el ranking de rendimiento:</label>
+<input class="form-control" id="rankPerformance" type="number"/>
+<label th:text="#{'lugar.por.popularidad'}">Lugar por popularidad:</label>
+<input class="form-control" id="rankPopularity" type="number"/>
+<label th:text="#{'evaluación.coste.eficacia'}">Evaluación coste-eficacia:</label>
+<input class="form-control" id="costEfficiency" step="0.01" type="number"/>
+<label th:text="#{'eficiencia.energética'}">Eficiencia energética:</label>
+<input class="form-control" id="energyEfficiency" step="0.01" type="number"/>
+<label th:text="#{'frecuencia.del.núcleo'}">Frecuencia del núcleo:</label>
+<input class="form-control" id="coreFrequency" step="0.01" type="number"/>
+<label th:text="#{'frecuencia.del.modo.boost.n.a.si.no.tien'}">Frecuencia del modo boost (N/A si no tiene):</label>
+<input class="form-control" id="boostFrequency" step="0.01" type="number"/>
+<label th:text="#{'consumo.de.energía.tdp'}">Consumo de energía (TDP):</label>
+<input class="form-control" id="tdp" step="0.01" type="number"/>
+</div>
+<!-- Campo oculto para enviar el JSON -->
+<input id="performanceData" name="performanceData" type="hidden"/>
+<div class="mb-3 text-center">
+<button class="btn btn-success" th:text="#{'guardar'}" type="submit">Guardar</button>
+<a class="btn btn-secondary" th:href="@{/items}" th:text="#{'cancelar'}">Cancelar</a>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
