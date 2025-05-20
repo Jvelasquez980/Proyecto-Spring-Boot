@@ -20,27 +20,27 @@
                     <form method="post" th:action="@{/register}" th:object="${client}">
                         <div class="mb-3">
                             <label class="form-label" for="username" th:text="#{usuario}"></label>
-                            <input class="form-control" id="username" required="" th:field="*{username}" type="text"/>
+                            <input class="form-control" id="username" required th:field="*{username}" type="text"/>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="email" th:text="#{correo.electronico}"></label>
-                            <input class="form-control" id="email" required="" th:field="*{email}" type="email"/>
+                            <input class="form-control" id="email" required th:field="*{email}" type="email"/>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="name" th:text="#{nombre}"></label>
-                            <input class="form-control" id="name" required="" th:field="*{name}" type="text"/>
+                            <input class="form-control" id="name" required th:field="*{name}" type="text"/>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="lastName" th:text="#{apellido}"></label>
-                            <input class="form-control" id="lastName" required="" th:field="*{lastName}" type="text"/>
+                            <input class="form-control" id="lastName" required th:field="*{lastName}" type="text"/>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="password" th:text="#{contrasena}"></label>
-                            <input class="form-control" id="password" required="" th:field="*{password}" type="password"/>
+                            <input class="form-control" id="password" required th:field="*{password}" type="password"/>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="phone" th:text="#{telefono}"></label>
-                            <input class="form-control" id="phone" required="" th:field="*{phone}" type="text"/>
+                            <input class="form-control" id="phone" required th:field="*{phone}" type="text"/>
                         </div>
                         <div class="mb-3 text-center">
                             <button class="btn btn-success" th:text="#{registrar}" type="submit"></button>
