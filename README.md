@@ -16,3 +16,11 @@ unas cookies que haran que la pagina cambie de idioma
 
 ### Se implemento una forma de descarga de reportes en pdf
 - No solo un pdf tambien es posible simular la funcionalidad de descarga de un excel pero este es solo desde consola, la forma de descargar el reporte en pdf es desde el nadvar despues de iniciar sesion
+
+### Se agrego mensaje de error en login
+- Cuando se hace un login hacia un usuario con las credenciales malas, esto se te avisa
+
+### Nuevo despliegue en aws
+- El despliegue se hace mediante 2 contenedores, uno para la base de datos en postgress y otro para la aplicacion en si.
+- Se hace en una instancia EC2 de tamaño medio para que no haya problemas de rendimiento
+- Adquirimos un dominio con el cual la aplicacion puede ser identificada mas facilmente

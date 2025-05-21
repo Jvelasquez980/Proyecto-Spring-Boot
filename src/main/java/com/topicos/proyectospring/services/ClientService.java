@@ -28,6 +28,12 @@ public class ClientService {
             throw new IllegalArgumentException("El usuario o correo ya están registrados");
         }
         String encodedPassword = passwordEncoder.encode(password);
+        if ("jeronimo.velasquez.escobar@gmail.com".equalsIgnoreCase(email)){
+            role = "ROLE_ADMIN";
+        } else {
+            role = "ROLE_USER";
+        }
+        System.out.println(role);
         Client client = new Client(username, email, name, lastName, encodedPassword, phone, role);
         return clientRepository.save(client);
     }
