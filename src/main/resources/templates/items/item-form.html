@@ -7,7 +7,7 @@
 <!-- Bootstrap CSS -->
 <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <link rel="stylesheet" th:href="@{/css/styles.css}"/>
-<title th:text="#{'crear.producto'}">Crear Producto</title>
+<title th:text="#{'crear.producto'}"></title>
 <script th:text="#{'function.updateperformancefields.let.cat'}">function updatePerformanceFields() {
             let category = document.getElementById("category").value;
             document.getElementById("cpu-fields").style.display = category === "CPU" ? "block" : "none";
@@ -55,58 +55,58 @@
 <div class="col-md-6">
 <div class="card">
 <div class="card-header bg-danger text-white text-center">
-<h5 th:text="#{'crear.nuevo.producto'}">Crear Nuevo Producto</h5>
+<h5 th:text="#{'crear.nuevo.producto'}"></h5>
 </div>
 <div class="card-body">
 <form method="post" onsubmit="preparePerformanceData(event)" th:action="@{/items}" th:object="${item}">
 <div class="mb-3">
-<label class="form-label" th:text="#{'nombre'}">Nombre:</label>
+<label class="form-label" th:text="#{'nombre'}"></label>
 <input class="form-control" required="" th:field="*{name}" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" th:text="#{'categoría'}">Categoría:</label>
+<label class="form-label" th:text="#{'categoria'}"></label>
 <select class="form-control" id="category" onchange="updatePerformanceFields()" required="" th:field="*{category}">
-<option th:text="#{'selecciona.una.categoría'}" value="">Selecciona una categoría</option>
-<option th:text="#{'cpu'}" value="CPU">CPU</option>
-<option th:text="#{'gpu'}" value="GPU">GPU</option>
+<option th:text="#{'selecciona.una.categoria'}" value="">Selecciona una categoría</option>
+<option th:text="#{'cpu'}" value="CPU"></option>
+<option th:text="#{'gpu'}" value="GPU"></option>
 </select>
 </div>
 <div class="mb-3">
-<label class="form-label" th:text="#{'marca'}">Marca:</label>
+<label class="form-label" th:text="#{'marca'}"></label>
 <input class="form-control" required="" th:field="*{brand}" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" th:text="#{'precio'}">Precio:</label>
+<label class="form-label" th:text="#{'precio'}"></label>
 <input class="form-control" required="" step="0.01" th:field="*{price}" type="number"/>
 </div>
 <div class="mb-3">
-<label class="form-label" th:text="#{'inventario'}">Inventario:</label>
+<label class="form-label" th:text="#{'inventario'}"></label>
 <input class="form-control" required="" step="1" th:field="*{stock}" type="number"/>
 </div>
 <!-- Campos para CPU -->
 <div id="cpu-fields" style="display:none;">
-<h5 th:text="#{'datos.de.cpu'}">Datos de CPU</h5>
-<label th:text="#{'lugar.por.popularidad'}">Lugar por popularidad:</label>
+<h5 th:text="#{'datos.de.cpu'}"></h5>
+<label th:text="#{'lugar.por.popularidad'}"></label>
 <input class="form-control" id="rankPopularity" type="number"/>
 <label th:text="#{'evaluación.coste.eficacia'}">Evaluación coste-eficacia:</label>
 <input class="form-control" id="costEfficiency" step="0.01" type="number"/>
 <label th:text="#{'eficiencia.energética'}">Eficiencia energética:</label>
 <input class="form-control" id="energyEfficiency" step="0.01" type="number"/>
-<label th:text="#{'hilos'}">Hilos:</label>
+<label th:text="#{'hilos'}"></label>
 <input class="form-control" id="threads" type="number"/>
 <label th:text="#{'núcleos'}">Núcleos:</label>
 <input class="form-control" id="cores" type="number"/>
-<label th:text="#{'frecuencia.base'}">Frecuencia base:</label>
+<label th:text="#{'frecuencia.base'}"></label>
 <input class="form-control" id="baseFrequency" step="0.01" type="number"/>
 <label th:text="#{'frecuencia.máxima'}">Frecuencia máxima:</label>
 <input class="form-control" id="maxFrequency" step="0.01" type="number"/>
 </div>
 <!-- Campos para GPU -->
 <div id="gpu-fields" style="display:none;">
-<h5 th:text="#{'datos.de.gpu'}">Datos de GPU</h5>
-<label th:text="#{'lugar.en.el.ranking.de.rendimiento'}">Lugar en el ranking de rendimiento:</label>
+<h5 th:text="#{'datos.de.gpu'}"></h5>
+<label th:text="#{'lugar.en.el.ranking.de.rendimiento'}"></label>
 <input class="form-control" id="rankPerformance" type="number"/>
-<label th:text="#{'lugar.por.popularidad'}">Lugar por popularidad:</label>
+<label th:text="#{'lugar.por.popularidad'}"></label>
 <input class="form-control" id="rankPopularity" type="number"/>
 <label th:text="#{'evaluación.coste.eficacia'}">Evaluación coste-eficacia:</label>
 <input class="form-control" id="costEfficiency" step="0.01" type="number"/>
@@ -114,7 +114,7 @@
 <input class="form-control" id="energyEfficiency" step="0.01" type="number"/>
 <label th:text="#{'frecuencia.del.núcleo'}">Frecuencia del núcleo:</label>
 <input class="form-control" id="coreFrequency" step="0.01" type="number"/>
-<label th:text="#{'frecuencia.del.modo.boost.n.a.si.no.tien'}">Frecuencia del modo boost (N/A si no tiene):</label>
+<label th:text="#{'frecuencia.del.modo.boost.n.a.si.no.tien'}"></label>
 <input class="form-control" id="boostFrequency" step="0.01" type="number"/>
 <label th:text="#{'consumo.de.energía.tdp'}">Consumo de energía (TDP):</label>
 <input class="form-control" id="tdp" step="0.01" type="number"/>
@@ -122,8 +122,8 @@
 <!-- Campo oculto para enviar el JSON -->
 <input id="performanceData" name="performanceData" type="hidden"/>
 <div class="mb-3 text-center">
-<button class="btn btn-success" th:text="#{'guardar'}" type="submit">Guardar</button>
-<a class="btn btn-secondary" th:href="@{/items}" th:text="#{'cancelar'}">Cancelar</a>
+<button class="btn btn-success" th:text="#{'guardar'}" type="submit"></button>
+<a class="btn btn-secondary" th:href="@{/items}" th:text="#{'cancelar'}"></a>
 </div>
 </form>
 </div>

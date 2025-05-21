@@ -27,15 +27,16 @@ public class AuthController {
         return "auth/login";
     }
 
-    @PostMapping("/login-success")
+    @GetMapping("/login-success")
     public String loginSuccess(HttpSession session) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
             Client client = clientService.findByUsername(userDetails.getUsername());
-            session.setAttribute("client", client);  // 🔥 Guardar usuario autenticado en sesión
+            session.setAttribute("client", client);
         }
-        return "home/index";
+
+        return "redirect:/";
     }
 
     @GetMapping("/register")
@@ -56,7 +57,7 @@ public class AuthController {
 
     @GetMapping("/logout")
     public String logoutSuccess(HttpSession session) {
-        session.invalidate();  // 🔥 Eliminar la sesión al cerrar sesión
+        session.invalidate();
         return "redirect:/login";
     }
 }
