@@ -4,11 +4,19 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.topicos.proyectospring.models.PCItem;
 import com.topicos.proyectospring.services.PCItemService;
+
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileInputStream;
 import java.util.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
 
 @Controller
 @RequestMapping("/items")
@@ -97,6 +105,47 @@ public class PCItemController {
             return "items/compare-form";
         }
     }
+    @GetMapping("/report/pdf")
+public void downloadPdfReport(HttpServletResponse response) {
+    try {
+        File file = new File("reports/products.pdf");
+
+        // Verifica que el archivo exista
+        if (!file.exists()) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            response.getWriter().write("El archivo PDF no existe. Por favor genera el reporte primero.");
+            return;
+        }
+
+        // Configura encabezados de respuesta
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=products.pdf");
+        response.setContentLength((int) file.length());
+
+        // Escribe el archivo al output stream
+        FileInputStream inputStream = new FileInputStream(file);
+        ServletOutputStream outputStream = response.getOutputStream();
+
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
+        }
+
+        inputStream.close();
+        outputStream.flush();
+        outputStream.close();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        try {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("Error al intentar descargar el PDF.");
+        } catch (Exception ignored) {}
+    }
+}
+
 
     // 🔥 NUEVO: Endpoint JSON con productos en stock
     @GetMapping("/api/stock")
