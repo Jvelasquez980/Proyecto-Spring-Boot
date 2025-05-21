@@ -14,8 +14,14 @@
 <div class="container my-4 text-center">
 <h2>Bienvenido, <span th:text="${session.client.name}"></span>!</h2>
 
-<h4 class="mt-4">Chiste de Chuck Norris:</h4>
-<p th:text="${joke}"></p>
+    <div>
+        <h2>Joke:</h2>
+        <p th:text="${joke.value}"></p>
+        <img th:src="${joke.icon_url}" alt="Chuck Norris" width="100"/>
+        <p><strong>ID:</strong> <span th:text="${joke.id}"></span></p>
+        <p><strong>Compartir:</strong> <a th:href="${joke.url}" target="_blank">Ver en la API</a></p>
+        <p><strong>Creado:</strong> <span th:text="${joke.created_at}"></span></p>
+    </div>
 
 <a class="btn btn-primary mt-3" th:href="@{/pay-methods}" th:text="#{'mis.métodos.de.pago'}">Mis Métodos de Pago</a>
 <a class="btn btn-danger mt-3" th:href="@{/logout}" th:text="#{'cerrar.sesión'}">Cerrar sesión</a>

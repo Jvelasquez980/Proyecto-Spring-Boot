@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.topicos.proyectospring.services.ChuckNorrisService;
+import com.topicos.proyectospring.models.ChuckNorrisJoke;
 import jakarta.servlet.http.HttpSession;
-
 
 @Controller
 
@@ -25,7 +25,8 @@ public class HomeController {
             return "redirect:/login";
         }
 
-        String joke = chuckNorrisService.getRandomJoke().block(); // ← importante
+        ChuckNorrisJoke joke = chuckNorrisService.getRandomJoke().block();
+
         model.addAttribute("title", "Welcome to Spring Boot");
         model.addAttribute("subtitle", "A Spring Boot Eafit App");
         model.addAttribute("joke", joke);

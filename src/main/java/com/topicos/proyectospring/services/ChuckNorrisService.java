@@ -16,12 +16,11 @@ public class ChuckNorrisService {
                 .build();
     }
 
-    public Mono<String> getRandomJoke() {
+    public Mono<ChuckNorrisJoke> getRandomJoke() {
         return webClient.get()
                 .uri("/jokes/random")
                 .retrieve()
-                .bodyToMono(ChuckNorrisJoke.class)
-                .map(ChuckNorrisJoke::getValue);
+                .bodyToMono(ChuckNorrisJoke.class);
     }
 }
 
