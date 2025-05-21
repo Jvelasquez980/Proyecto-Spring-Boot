@@ -3,7 +3,7 @@
 ## FUNCIONALIDADES AGREGADAS EN LA ENTREGA 2
 
 ### Api publica la cual da una repuesta en json donde se pueden acceder a los inventarios del proyecto
-- La api en cuestion o la url para acceder a la misma es : /items/api/stock
+- La api en cuestion o la url para acceder a la misma es : /items/api/stock (Despues de hacer login, se podria desptroteger la ruta para que sea 100% accesible)
 
 ### Se soluciono el problema del login, el cual mandaba a una pagina de error cuando se trataba de iniciar sesion
 -Bug menor
@@ -23,4 +23,7 @@ unas cookies que haran que la pagina cambie de idioma
 ### Nuevo despliegue en aws
 - El despliegue se hace mediante 2 contenedores, uno para la base de datos en postgress y otro para la aplicacion en si.
 - Se hace en una instancia EC2 de tamaño medio para que no haya problemas de rendimiento
-- Adquirimos un dominio con el cual la aplicacion puede ser identificada mas facilmente
+- Adquirimos un dominio con el cual la aplicacion puede ser identificada mas facilmente https://hardwaretech.store/, este es el link
+- Ademas creamos certificados ssl, con los cuales podemos permitir el trafico https
+### Wiki actualizada
+- En la wiki del proyecto en la pagina de entrega 2 hay informacion ampliada sobre el despliegue y la nueva arquitectura
