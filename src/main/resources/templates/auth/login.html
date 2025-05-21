@@ -17,17 +17,21 @@
                     <h5 th:text="#{iniciar.sesion}"></h5>
                 </div>
                 <div class="card-body">
+                    <div class="alert alert-danger" th:if="${param.error}" th:text="#{error.credenciales}"></div>
+
                     <form method="post" th:action="@{/login}">
                         <div class="mb-3">
                             <label class="form-label" for="username" th:text="#{usuario}"></label>
-                            <input class="form-control" id="username" name="username" required type="text"/>
+                            <input class="form-control" id="username" name="username"
+                                   type="text" required
+                                   th:value="${param.username}" />
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="password" th:text="#{contrasena}"></label>
                             <input class="form-control" id="password" name="password" required type="password"/>
                         </div>
                         <div class="mb-3 text-center">
-                            <button class="btn btn-success" th:text="#{ingresar}" type="submit"></button>
+                            <button class="btn btn-success" type="submit" th:text="#{ingresar}">Ingresar</button>
                             <a class="btn btn-secondary" th:href="@{/register}" th:text="#{registrar}"></a>
                         </div>
                     </form>
