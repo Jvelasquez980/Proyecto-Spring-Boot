@@ -8,7 +8,8 @@
 <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <link rel="stylesheet" th:href="@{/css/styles.css}"/>
 <title th:text="#{'crear.producto'}"></title>
-<script th:text="#{'function.updateperformancefields.let.cat'}">function updatePerformanceFields() {
+    <script>
+        function updatePerformanceFields() {
             let category = document.getElementById("category").value;
             document.getElementById("cpu-fields").style.display = category === "CPU" ? "block" : "none";
             document.getElementById("gpu-fields").style.display = category === "GPU" ? "block" : "none";
@@ -47,7 +48,9 @@
 
             // Envía el formulario después de modificar el valor
             event.target.submit();
-        }</script>
+        }
+    </script>
+
 </head>
 <body onload="updatePerformanceFields()">
 <div class="container my-4">
@@ -88,17 +91,17 @@
 <h5 th:text="#{'datos.de.cpu'}"></h5>
 <label th:text="#{'lugar.por.popularidad'}"></label>
 <input class="form-control" id="rankPopularity" type="number"/>
-<label th:text="#{'evaluación.coste.eficacia'}">Evaluación coste-eficacia:</label>
+<label th:text="#{'evaluacion.coste.eficacia'}">Evaluación coste-eficacia:</label>
 <input class="form-control" id="costEfficiency" step="0.01" type="number"/>
-<label th:text="#{'eficiencia.energética'}">Eficiencia energética:</label>
+<label th:text="#{'eficiencia.energetica'}">Eficiencia energética:</label>
 <input class="form-control" id="energyEfficiency" step="0.01" type="number"/>
 <label th:text="#{'hilos'}"></label>
 <input class="form-control" id="threads" type="number"/>
-<label th:text="#{'núcleos'}">Núcleos:</label>
+<label th:text="#{'nucleos'}">Núcleos:</label>
 <input class="form-control" id="cores" type="number"/>
 <label th:text="#{'frecuencia.base'}"></label>
 <input class="form-control" id="baseFrequency" step="0.01" type="number"/>
-<label th:text="#{'frecuencia.máxima'}">Frecuencia máxima:</label>
+<label th:text="#{'frecuencia.maxima'}">Frecuencia máxima:</label>
 <input class="form-control" id="maxFrequency" step="0.01" type="number"/>
 </div>
 <!-- Campos para GPU -->
@@ -108,15 +111,15 @@
 <input class="form-control" id="rankPerformance" type="number"/>
 <label th:text="#{'lugar.por.popularidad'}"></label>
 <input class="form-control" id="rankPopularity" type="number"/>
-<label th:text="#{'evaluación.coste.eficacia'}">Evaluación coste-eficacia:</label>
+<label th:text="#{'evaluacion.coste.eficacia'}">Evaluación coste-eficacia:</label>
 <input class="form-control" id="costEfficiency" step="0.01" type="number"/>
-<label th:text="#{'eficiencia.energética'}">Eficiencia energética:</label>
+<label th:text="#{'eficiencia.energetica'}">Eficiencia energética:</label>
 <input class="form-control" id="energyEfficiency" step="0.01" type="number"/>
-<label th:text="#{'frecuencia.del.núcleo'}">Frecuencia del núcleo:</label>
+<label th:text="#{'frecuencia.del.nucleo'}">Frecuencia del núcleo:</label>
 <input class="form-control" id="coreFrequency" step="0.01" type="number"/>
 <label th:text="#{'frecuencia.del.modo.boost.n.a.si.no.tien'}"></label>
 <input class="form-control" id="boostFrequency" step="0.01" type="number"/>
-<label th:text="#{'consumo.de.energía.tdp'}">Consumo de energía (TDP):</label>
+<label th:text="#{'consumo.de.energia.tdp'}">Consumo de energía (TDP):</label>
 <input class="form-control" id="tdp" step="0.01" type="number"/>
 </div>
 <!-- Campo oculto para enviar el JSON -->
