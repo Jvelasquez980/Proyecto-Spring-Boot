@@ -7,19 +7,19 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <link rel="stylesheet" th:href="@{/css/styles.css}"/>
-<title th:text="#{'métodos.de.pago'}">Métodos de Pago</title>
+<title th:text="#{'metodos.de.pago'}"></title>
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 <div class="container my-4">
-<h1 class="text-center" th:text="#{'métodos.de.pago'}">Métodos de Pago</h1>
+<h1 class="text-center" th:text="#{'metodos.de.pago'}"></h1>
 <table class="table table-dark table-striped">
 <thead>
 <tr>
-<th th:text="#{'nombre.del.titular'}">Nombre del Titular</th>
-<th th:text="#{'número.de.tarjeta'}">Número de Tarjeta</th>
-<th th:text="#{'fecha.de.expiración'}">Fecha de Expiración</th>
-<th th:text="#{'acciones'}">Acciones</th>
+<th th:text="#{'nombre.del.titular'}"></th>
+<th th:text="#{'numero.de.tarjeta'}"></th>
+<th th:text="#{'fecha.de.expiracion'}"></th>
+<th th:text="#{'acciones'}"></th>
 </tr>
 </thead>
 <tbody>
@@ -28,13 +28,13 @@
 <td th:text="${payMethod.cardNumber}"></td>
 <td th:text="${payMethod.expirationDate}"></td>
 <td>
-<a class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que quieres eliminar este método de pago?')" th:href="@{/pay-methods/delete/{id}(id=${payMethod.id})}" th:text="#{'eliminar'}">Eliminar</a>
+<a class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que quieres eliminar este método de pago?')" th:href="@{/pay-methods/delete/{id}(id=${payMethod.id})}" th:text="#{'eliminar'}"></a>
 </td>
 </tr>
 </tbody>
 </table>
 <div class="text-center">
-<a class="btn btn-success" th:href="@{/pay-methods/new}" th:text="#{'agregar.metodo'}">Agregar nuevo método de pago</a>
+<a class="btn btn-success" th:href="@{/pay-methods/new}" th:text="#{'agregar.metodo'}"></a>
 </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>

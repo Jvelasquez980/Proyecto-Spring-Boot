@@ -16,34 +16,34 @@
 <div class="col-md-6">
 <div class="card">
 <div class="card-header bg-danger text-white text-center">
-<h5 th:text="#{'agregar.método'}">Agregar Método de Pago</h5>
+<h5 th:text="#{'agregar.metodo'}"></h5>
 </div>
 <div class="card-body">
 <form method="post" th:action="@{/pay-methods}">
 <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
 <div class="mb-3">
-<label class="form-label" for="ownersName" th:text="#{'nombre.del.titular'}">Nombre del Titular:</label>
+<label class="form-label" for="ownersName" th:text="#{'nombre.del.titular'}"></label>
 <input class="form-control" id="ownersName" name="ownersName" required="" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" for="cardNumber" th:text="#{'número.de.tarjeta'}">Número de Tarjeta:</label>
+<label class="form-label" for="cardNumber" th:text="#{'numero.de.tarjeta'}"></label>
 <input class="form-control" id="cardNumber" name="cardNumber" required="" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" for="cvv" th:text="#{'cvv'}">CVV:</label>
+<label class="form-label" for="cvv" th:text="#{'cvv'}"></label>
 <input class="form-control" id="cvv" name="cvv" required="" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" for="month" th:text="#{'mes.de.expiración'}">Mes de Expiración:</label>
+<label class="form-label" for="month" th:text="#{'mes.de.expiracion'}"></label>
 <input class="form-control" id="month" name="month" required="" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" for="year" th:text="#{'año.de.expiración'}">Año de Expiración:</label>
+<label class="form-label" for="year" th:text="#{'ano.de.expiracion'}"></label>
 <input class="form-control" id="year" name="year" required="" type="text"/>
 </div>
 <div class="mb-3 text-center">
-<button class="btn btn-success" th:text="#{'guardar'}" type="submit">Guardar</button>
-<a class="btn btn-secondary" th:href="@{/pay-methods}" th:text="#{'cancelar'}">Cancelar</a>
+<button class="btn btn-success" th:text="#{'guardar'}" type="submit"></button>
+<a class="btn btn-secondary" th:href="@{/pay-methods}" th:text="#{'cancelar'}"></a>
 </div>
 </form>
 </div>
