@@ -1,45 +1,46 @@
 package com.topicos.proyectospring.controllers;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.GetMapping;
+import com.topicos.proyectospring.services.ChuckNorrisService;
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
 
 public class HomeController {
 
+    private final ChuckNorrisService chuckNorrisService;
 
-@GetMapping("/")
+    @Autowired
+    public HomeController(ChuckNorrisService chuckNorrisService) {
+        this.chuckNorrisService = chuckNorrisService;
+    }
 
-public String index(Model model) {
+    @GetMapping("/")
+    public String index(Model model, HttpSession session) {
+        if (session.getAttribute("client") == null) {
+            return "redirect:/login";
+        }
 
-model.addAttribute("title", "Welcome to Spring Boot");
+        String joke = chuckNorrisService.getRandomJoke().block(); // ← importante
+        model.addAttribute("title", "Welcome to Spring Boot");
+        model.addAttribute("subtitle", "A Spring Boot Eafit App");
+        model.addAttribute("joke", joke);
+        model.addAttribute("client", session.getAttribute("client"));
 
-model.addAttribute("subtitle", "An Spring Boot Eafit App");
+        return "home/index";
+    }
 
-return "home/index";
-
-}
-
-
-@GetMapping("/about")
-
-public String about(Model model) {
-
-model.addAttribute("title", "About Us - Online Store");
-
-model.addAttribute("subtitle", "About Us");
-
-model.addAttribute("description", "This is an about page ...");
-
-model.addAttribute("author", "Developed by: Your Name");
-
-return "home/about";
-
-}
+    @GetMapping("/about")
+    public String about(Model model) {
+        model.addAttribute("title", "About Us - Online Store");
+        model.addAttribute("subtitle", "About Us");
+        model.addAttribute("description", "This is an about page ...");
+        model.addAttribute("author", "Developed by: Your Name");
+        return "home/about";
+    }
 
 }

@@ -13,6 +13,10 @@
 <div th:replace="~{fragments/header :: header}"></div>
 <div class="container my-4 text-center">
 <h2>Bienvenido, <span th:text="${session.client.name}"></span>!</h2>
+
+<h4 class="mt-4">Chiste de Chuck Norris:</h4>
+<p th:text="${joke}"></p>
+
 <a class="btn btn-primary mt-3" th:href="@{/pay-methods}" th:text="#{'mis.métodos.de.pago'}">Mis Métodos de Pago</a>
 <a class="btn btn-danger mt-3" th:href="@{/logout}" th:text="#{'cerrar.sesión'}">Cerrar sesión</a>
 </div>
