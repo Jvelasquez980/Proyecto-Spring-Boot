@@ -64,9 +64,9 @@
 <input class="form-control" required="" th:field="*{name}" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" th:text="#{'categoría'}">Categoría:</label>
+<label class="form-label" th:text="#{'categoria'}"></label>
 <select class="form-control" id="category" onchange="updatePerformanceFields()" required="" th:field="*{category}">
-<option th:text="#{'selecciona.una.categoría'}" value="">Selecciona una categoría</option>
+<option th:text="#{'selecciona.una.categoria'}" value="">Selecciona una categoría</option>
 <option th:text="#{'cpu'}" value="CPU"></option>
 <option th:text="#{'gpu'}" value="GPU"></option>
 </select>
