@@ -11,6 +11,7 @@ services:
       - "5432:5432"
     networks:
       - springnet
+    restart: always
 
   app:
     build: .
@@ -26,6 +27,7 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     networks:
       - springnet
+    restart: always
 
 networks:
   springnet:
